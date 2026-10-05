@@ -6,7 +6,7 @@ The following official schema specifications are used in this research project. 
 
 | Schema        | Version | Format | Download Date | Official Source                    |
 | ------------- | ------- | ------ | ------------- | ---------------------------------- |
-| DDI-Lifecycle | 3.3     | XSD    | 2026-10-05    | `<https://ddialliance.org/ddi-lifecycle_v3.3>` |
+| DDI-Lifecycle | 3.3     | XSD    | 2026-10-05    | `https://ddialliance.org/ddi-lifecycle_v3.3` |
 | DataCite      | 4.7     | XSD    | 2026-10-05    | `<[official DataCite 4.7 URL](https://schema.datacite.org/meta/kernel-4.7/metadata.xsd)>`      |
 
 ### DDI-Lifecycle 3.3
