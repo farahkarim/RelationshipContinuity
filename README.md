@@ -29,62 +29,61 @@ The following official schema specifications are used in this research project. 
 
 ## Python Environment
 
-This project uses a dedicated Conda environment to keep the research dependencies isolated from other Python projects.
+This project uses a dedicated Conda environment named `ddi-datacite`. The environment specification is stored in `environment.yml`, while Python package dependencies are listed in `requirements.txt`.
 
 ### Requirements
 
 * Anaconda or Miniconda
-* Python 3.12
 * Git
 * VS Code (recommended)
 
-### 1. Create the Conda environment
+### 1. Create the environment
 
-From the Anaconda PowerShell Prompt:
-
-```powershell
-conda create -n ddi-datacite python=3.12
-```
-
-Activate the environment:
-
-```powershell
-conda activate ddi-datacite
-```
-
-Verify the Python version:
-
-```powershell
-python --version
-```
-
-The expected output is:
-
-```text
-Python 3.12.x
-```
-
-### 2. Install project dependencies
-
-With the `ddi-datacite` environment activated, navigate to the project directory:
+From the Anaconda PowerShell Prompt, navigate to the project directory:
 
 ```powershell
 cd "C:\path\to\RelationshipContinuity"
 ```
 
-Install the dependencies listed in `requirements.txt`:
+Create the environment from `environment.yml`:
 
 ```powershell
-python -m pip install -r requirements.txt
+conda env create -f environment.yml
 ```
 
-The current dependencies are:
+This creates the `ddi-datacite` environment using Python 3.12 and installs the dependencies listed in `requirements.txt`.
 
-* `pandas` — data manipulation and CSV processing
-* `lxml` — XML/XSD parsing
-* `openpyxl` — Excel file support
+### 2. Activate the environment
 
-### 3. Verify the environment
+```powershell
+conda activate ddi-datacite
+```
+
+Verify that the environment is active:
+
+```powershell
+conda info --envs
+```
+
+The active environment should be marked with `*`:
+
+```text
+ddi-datacite    *    C:\Users\<username>\AppData\Local\anaconda3\envs\ddi-datacite
+```
+
+Check the Python version:
+
+```powershell
+python --version
+```
+
+Expected:
+
+```text
+Python 3.12.x
+```
+
+### 3. Verify the dependencies
 
 Run:
 
@@ -92,7 +91,7 @@ Run:
 python -c "import pandas, lxml, openpyxl; print('Environment OK')"
 ```
 
-If successful, the terminal should display:
+If successful:
 
 ```text
 Environment OK
@@ -100,35 +99,40 @@ Environment OK
 
 ### 4. VS Code
 
-In VS Code, select the project environment:
+Open the project in VS Code and select the `ddi-datacite` Python interpreter:
 
 **Ctrl + Shift + P → Python: Select Interpreter**
 
-Select:
+Select the interpreter associated with:
+
+```text
+ddi-datacite
+```
+
+Typically:
 
 ```text
 C:\Users\<username>\AppData\Local\anaconda3\envs\ddi-datacite\python.exe
 ```
 
-The selected interpreter should correspond to the `ddi-datacite` Conda environment.
+### 5. Dependency files
 
-### 5. Recreating the environment
+The project uses two files for environment reproducibility:
 
-To recreate the project environment on another machine:
+#### `environment.yml`
 
-```powershell
-conda create -n ddi-datacite python=3.12
-conda activate ddi-datacite
-python -m pip install -r requirements.txt
-```
+Defines the Conda environment, including:
 
-This installs the Python dependencies required by the project.
+* Environment name
+* Python version
+* Conda channels
+* Installation of `requirements.txt`
 
-## Dependency management
+#### `requirements.txt`
 
-The `requirements.txt` file records the Python packages required by the analysis. When a new Python dependency is introduced, it should be added to this file.
+Lists the Python packages required by the project.
 
-For example:
+Current dependencies:
 
 ```text
 pandas
@@ -136,10 +140,42 @@ lxml
 openpyxl
 ```
 
-The Conda environment itself is named:
+### 6. Recreating the environment
 
-```text
-ddi-datacite
+On another machine, clone the repository and run:
+
+```powershell
+conda env create -f environment.yml
+conda activate ddi-datacite
 ```
 
-The README documents the environment creation and installation procedure so that the analysis can be reproduced.
+This recreates the project environment and installs the Python dependencies.
+
+### 7. Updating the environment
+
+If `requirements.txt` is changed, update the environment with:
+
+```powershell
+conda activate ddi-datacite
+python -m pip install -r requirements.txt
+```
+
+If the Python version or Conda configuration in `environment.yml` changes, the environment can be updated with:
+
+```powershell
+conda env update -f environment.yml --prune
+```
+
+---
+
+## Reproducibility
+
+The following files are maintained in the repository to support reproducible research:
+
+```text
+environment.yml
+requirements.txt
+README.md
+```
+
+`environment.yml` specifies the Conda environment, `requirements.txt` specifies the Python dependencies, and this README documents the setup and analysis workflow.
